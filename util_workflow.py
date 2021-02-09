@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import urllib.request
 import shutil
@@ -71,37 +73,48 @@ def add_input_wf_files(input_file_names, DATA_DIR,rc):
         rc.add_replica("local", filename,  os.path.join(os.getcwd(), dst)) 
     return all_input_files
 
-def add_output_job1(input_file_names):
-    """ Outputs from data_preprocessing1.py
-    Cat_10974.jpg ---> Cat_10974_proc1.jpg
-    """
-    output_data_preprocessing1 = []
-    for img_name in input_file_names:
-        name = img_name.split(".")[0] + "_proc1.jpg"
-        output_data_preprocessing1.append(File(name))
-    return output_data_preprocessing1
 
-def add_output_job2(input_file_names):
-    """ Outputs from data_preprocessing2.py
-    Cat_10974_proc2_0.jpg, Cat_10974_proc2_1.jpg,
-    Cat_10974_proc2_2.jpg','Cat_10974_proc2_3.jpg'
+#--------------------------------------------------------------------------------------------
+def create_file_objects_postfix(input_file_names, postfix):
+    """ Given names of fiels creates
+        Pegasus File objects, adds postfix to the names
     """
-    output_data_preprocessing2 = []
+    output_data = []
     for img_name in input_file_names:
-        output_data_preprocessing2.append(File(img_name))
-    return output_data_preprocessing2
+        name = img_name.split(".")[0] +  postfix
+        output_data.append(File(name))
+    return output_data
 
-def return_filenames_job2(input_file_names):
-    """Outputs from data_preprocessing2.py have names changed 
-    Cat_10974_proc1.jpg ---> [Cat_10974_proc2_0.jpg, Cat_10974_proc2_1.jpg,
-    Cat_10974_proc2_2.jpg','Cat_10974_proc2_3.jpg']
+
+def create_file_objects(input_file_names):
+    """ Given names of fiels creates
+        Pegasus File objects
     """
-    filenames_data_preprocessing2 = []
+    output_files= []
     for img_name in input_file_names:
-        for i in range(4):
-            filename = img_name.split(".")[0] + "_proc2_" + str(i)+ ".jpg"
-            filenames_data_preprocessing2.append(filename)
-    return filenames_data_preprocessing2
+        output_files.append(File(img_name))
+    return output_files
+
+
+def create_file_objects_postfix_range(input_file_names, postfix, range_num):
+    """ Given names of fiels creates
+        Pegasus File objects, adds postfix to the names and range
+    """
+    filenames_data = []
+    for img_name in input_file_names:
+        for i in range(range_num):
+            filename = img_name.split(".")[0] + postfix + str(i)+ ".jpg"
+            filenames_data.append(File(filename))
+    return filenames_data
+
+
+#-----------------------------------------------------------------------------------------------
+
+def add_input_tune_model(input_file_names):
+    input_tune_model = []
+    for filename in input_file_names:
+        input_tune_model.append(File(filename))
+    return input_tune_model
 
 
 def split_data_filenames(filenames):
@@ -113,14 +126,7 @@ def split_data_filenames(filenames):
     files_split_dict["test"] = test
     files_split_dict["validate"] = validate
     
-    train_filenames = ["train_" + file for file in train] 
-    val_filenames = ["val_" + file for file in validate] 
-    test_filenames =  ["test_" + file for file in test] 
+    train_filenames = [file for file in train] 
+    val_filenames = [file for file in validate] 
+    test_filenames =  [file for file in test] 
     return train_filenames,val_filenames,test_filenames, files_split_dict
-
-
-def add_input_tune_model(input_file_names):
-    input_tune_model = []
-    for filename in input_file_names:
-        input_tune_model.append(File(filename))
-    return input_tune_model  
