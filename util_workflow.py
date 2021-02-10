@@ -63,7 +63,7 @@ def return_input_files(corrupted_files, DATASET_SIZE, DATA_DIR, LABELS):
     return input_file_names
 
 
-def add_input_wf_files(input_file_names, DATA_DIR,rc):
+def add_input_wf_files(input_file_names,DATA_DIR,rc):
     """ Inputs to data_preprocessing1.py
     """
     all_input_files  = []
@@ -96,14 +96,14 @@ def create_file_objects(input_file_names):
     return output_files
 
 
-def create_file_objects_postfix_range(input_file_names, postfix, range_num):
+def create_file_objects_postfix_range(input_file_names,prefix, postfix, range_num):
     """ Given names of fiels creates
         Pegasus File objects, adds postfix to the names and range
     """
     filenames_data = []
     for img_name in input_file_names:
         for i in range(range_num):
-            filename = img_name.split(".")[0] + postfix + str(i)+ ".jpg"
+            filename = prefix+img_name.split(".")[0] + postfix + str(i)+ ".jpg"
             filenames_data.append(File(filename))
     return filenames_data
 
