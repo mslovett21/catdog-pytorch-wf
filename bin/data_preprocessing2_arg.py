@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(description='Data Preprocessing step 2')
 parser.add_argument('dataset_name',  metavar='dataset', type=str, nargs=1, help = "training set prefix")
 
 IMG_SIZE = 150
-DATASET_DIR = "data/"
+DATASET_DIR = ""
 
 class DataAugmentation:
     gaussian = np.random.normal(0, 0.3, (IMG_SIZE ,IMG_SIZE,3 ) )
