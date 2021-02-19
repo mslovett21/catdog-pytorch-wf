@@ -1,6 +1,6 @@
 # Pegasus Workflow to Classify Cats and Dogs
 
-<img src="img/catdog-wf-bestmodel.dot"  height="400"/>
+<img src="imgs/catdog-wf-bestmodel.dot"  height="400"/>
 
 ### Usage
 1. `git clone git@github.com:mslovett21/catdog-pytorch-wf.git`
@@ -19,11 +19,11 @@ Fix the repo:
 Detailed walk through steps of training a single architecture. Here VGG16.
 
 
-![](img/catdog_single.png)
+![](imgs/catdog_single.png)
 
 
 The workflow does hyperparameter optimiation on 3 different architectures and chooses best one.
 Checkpoints are used to restart the training in case of time out or system failure.
 
 
-![](img/cats_and_dogs.png)
+![](imgs/cats_and_dogs.png)
