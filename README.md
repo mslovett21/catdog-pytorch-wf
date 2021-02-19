@@ -1,5 +1,6 @@
 # Pegasus Workflow to Classify Cats and Dogs
-![workflow](img/graph_tuned2.png)
+
+<img src="img/catdog-wf-bestmodel.dot"  height="400"/>
 
 ### Usage
 1. `git clone git@github.com:mslovett21/catdog-pytorch-wf.git`
