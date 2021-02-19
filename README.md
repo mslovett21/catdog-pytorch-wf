@@ -1,4 +1,5 @@
 # Pegasus Workflow to Classify Cats and Dogs
+![workflow](img/graph_tuned2.png)
 
 ### Usage
 1. `git clone git@github.com:mslovett21/catdog-pytorch-wf.git`
@@ -16,7 +17,7 @@ Fix the repo:
 # Pegasus Workflow to Classify Cats and Dogs
 Detailed walk through steps of training a single architecture. Here VGG16.
 
-![workflow](img/graph_tuned2.png)
+
 ![](img/catdog_single.png)
 
 
