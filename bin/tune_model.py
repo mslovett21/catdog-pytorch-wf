@@ -37,7 +37,6 @@ import torch
 from torch import nn, optim
 from skimage import io, transform
 import torchvision.transforms as transforms
-from pytorchtools import EarlyStopping
 
 import optuna
 optuna.logging.set_verbosity(optuna.logging.WARNING)
@@ -45,7 +44,7 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 from model_selection import BasicNet, PretrainedVGG16, PretrainedDenseNet121
 from util_checkpoint import extract_checkpoints, load_checkpoint, checkpoints_tar,save_checkpoint
 from data_loader import CatDogsDataset
-
+from pytorch_tools import EarlyStopping
 
 
 
@@ -60,7 +59,7 @@ CAT_VAL_PATH = DATASET_DIR + "val_Cat*.jpg"
 DOG_VAL_PATH = DATASET_DIR + "val_Dog*.jpg"
 
 # Tar with checkpoints
-DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+DEVICE = torch.device("cpu")#('cuda' if torch.cuda.is_available() else 'cpu')
 MODEL = "basicnet"
 EPOCHS = 10
 CHECKPOINTS_FILES_LIST = []
@@ -232,6 +231,7 @@ def create_study(hpo_checkpoint_file):
     try:
         print("Trying to load an existing study...")
         STUDY = joblib.load("hpo_study_checkpoint_" + MODEL + ".pkl")
+        print("read the study")
         todo_trials = N_TRIALS - len(STUDY.trials_dataframe())
         if todo_trials > 0 :
             print("There are {} trials to do out of {}".format(todo_trials, N_TRIALS))
@@ -255,6 +255,7 @@ def main():
     global TAR_FILE
     global N_TRIALS
     print("Good start")
+    print(DEVICE)
 
     try:
         signal.signal(signal.SIGTERM, sigterm_handler)

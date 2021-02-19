@@ -17,3 +17,4 @@ pegasus.proprtie
 !corrupted_files.txt
 !requirements.txt
 pegasus.properties
+bin/data/*

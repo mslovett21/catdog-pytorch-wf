@@ -88,7 +88,8 @@ def main():
         name = dataset + "_" + "_".join(label) + "_proc2_"
         i = 0
         for img in augmented_imgs:
-            cv2.imwrite(DATASET_DIR + name + str(i) + '.jpg',img*255)# if you want to see the images do img*255
+            fname = DATASET_DIR + name + str(i) + '.jpg'
+            cv2.imwrite(fname,img*255)# if you want to see the images do img*255
             i +=1
 
 
